@@ -34,7 +34,7 @@ th,td {padding:10px;border-bottom:1px solid #ddd;}
 </table>
 </div>
 <script>
-const API="https://SEU-BACKEND.onrender.com/emendas";
+const API="https://emenda.onrender.com/emendas";
 function criar(){fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({tipo:tipo.value,autor:autor.value,destino:destino.value,valorTotal:parseFloat(valor.value),usos:[]})}).then(load);}
 function load(){fetch(API).then(r=>r.json()).then(data=>{let total=0,usado=0;const tabela=document.getElementById("tabela");tabela.innerHTML="";data.forEach(e=>{total+=e.valorTotal;usado+=e.valorUsado;tabela.innerHTML+=`<tr><td>${e.id}</td><td>${e.autor}</td><td>${e.valorTotal}</td><td>${e.valorUsado}</td><td>${e.saldo}</td></tr>`;});document.getElementById("total").innerText=total;document.getElementById("usado").innerText=usado;document.getElementById("saldo").innerText=total-usado;});}
 load();
